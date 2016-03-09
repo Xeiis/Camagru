@@ -1,6 +1,7 @@
 body{
     margin: 0;
     background-color: #C9EFF3;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif!important;
 }
 
 .header {
@@ -20,6 +21,10 @@ body{
     background-color: #252525;
 }
 
+table{
+    height:100%;
+}
+
 td:hover{
     cursor:pointer;
     background-color:#151515;
@@ -32,7 +37,6 @@ td:hover{
 td{
     color: #FFF;
     font-size : 16px;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     border-right: 1px solid #FFF;
     padding: 5px;
     height: 100%;
@@ -77,15 +81,16 @@ input[type="text"]:focus, input[type="password"]:focus, input[type=submit], text
 
 .connexion_header{
     width: 100%;
-    height :10%;
-    background-color: #353535;
+    height : 30px;
+    background-color: #252525;
     color : #FFF;
     padding-top : 10px;
 }
 .connexion{
     background-color:#6FA1A7;
-    width: 12%;
-    height: 28%;
+    width: 30%;
+    height: auto;
     margin-bottom: 25px;
-    margin-top: 25px;
+    margin-top: 10px;
+    padding-bottom: 10px;
 }

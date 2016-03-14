@@ -89,6 +89,11 @@ ALTER TABLE `utilisateur`
 --
 
 --
+-- AUTO_INCREMENT for table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `commentaire`
 --
 ALTER TABLE `commentaire`

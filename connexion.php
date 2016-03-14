@@ -8,37 +8,12 @@ catch (PDOException $e)
     die();
 }
 
+$login = $_POST['login'];
+$password = $_POST['password'];
 
-
-
-/*$ident = $_GET['ident'];
-$mdp = $_GET['mdp'];
-$true = 0;
-$sql = "select * from UTILISATEUR where identifiant = '".$ident."' and mdp = '".$mdp."'";
+$sql = "select 1 from UTILISATEUR where identifiant = '".$login."' and password = '".$password;
 $reponse = $dbh->query($sql);
 while ($donnees = $reponse->fetch())
 {
-
-    echo "UTILISATEUR";
-    $true = 1;
+    echo "OK";
 }
-$sql = "select * from LOCATAIRE where identifiant = '".$ident."' and mdp = '".$mdp."'";
-$reponse = $dbh->query($sql);
-while ($donnees = $reponse->fetch())
-{
-    echo "LOCATAIRE";
-    $true = 1;
-}
-if($true == 0)
-{
-    echo $true;
-}*/
-/*$ident = $_GET['ident'];
-$mdp = $_GET['mdp'];
-    if ($ident == 'medecin')
-        echo "MEDECIN";
-    elseif ($ident == 'pharmacien')
-        echo "PHARMACIEN";
-    elseif ($ident == 'utilisateur')
-        echo "UTILISATEUR";
-?>*/

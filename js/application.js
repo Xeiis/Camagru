@@ -1,4 +1,4 @@
-function login()
+function login(callback)
 {
     var login = document.getElementById('login').value;
     var password = document.getElementById('password').value;
@@ -7,14 +7,13 @@ function login()
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-                readData(xhr.responseText); // recuperation du echo oui ou non
+            callback(xhr.responseText);
         }
     };
 
     xhr.open("POST", "connexion.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("login="+login+"&password="+password);
-    //ajax pour verifier si le login exist si oui on envoie vers une page on déffinira plus tard.
+    xhr.send("login=" + login + "&password=" + password);
 }
 
 function readData(sData)
@@ -47,6 +46,3 @@ function getXMLHttpRequest() {
     }
     return xhr;
 }
-
-
-

@@ -1,6 +1,6 @@
 <?php
 try {
-    $dbh = new PDO('mysql:host=localhost;dbname=CAMAGRU', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+    $dbh = new PDO('mysql:host=localhost;dbname=camagru', 'root', 'maison02', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 }
 catch (PDOException $e)
 {
@@ -13,7 +13,7 @@ $password = (isset($_POST["password"])) ? htmlentities($_POST["password"]) : NUL
 
 $sql = "select 1 from UTILISATEUR where identifiant = '".$login."' and password = '".$password;
 $reponse = $dbh->query($sql);
-while ($donnees = $reponse->fetch())
+if ($donnees = $reponse->fetch())
 {
     echo "OK";
 }

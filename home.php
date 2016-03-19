@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -25,10 +25,10 @@
             </div>
          </center>
 	</div>
-	<div>
+	<!--<div>
 		<video id="video"></video>
 		<canvas id="canvas"></canvas>
-	</div>
+	</div>-->
 <?php
     include 'footer.php';
 ?>

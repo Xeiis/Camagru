@@ -1,17 +1,21 @@
+html{
+    height:100%;
+}
 body{
     margin: 0;
     background-color: #C9EFF3;
+    height:100%;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif!important;
 }
 
 .header {
-    height: 8%;
+    height: 5%;
     width: 100%;
     background-color: #252525;
 }
 
 .container{
-    height: 84%;
+    height: 90%;
     width: 100%;
 }
 
@@ -21,7 +25,7 @@ a{
 }
 
 .footer {
-    height: 8%;
+    height: 5%;
     width: 100%;
     background-color: #252525;
 }

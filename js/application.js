@@ -19,7 +19,8 @@ function login(callback)
 function readData(sData)
 {
     if (sData == "OK") {
-        alert("login et password ok")
+        alert("login et password ok");
+        //redigiriger vers la page approprie
     }
     else
     {

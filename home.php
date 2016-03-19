@@ -24,7 +24,11 @@
                 <a href="inscription.php" style="font-size:12px; color:#000; text-decoration:none">Je m'inscrit !</a>
             </div>
          </center>
-    </div>
+	</div>
+	<div>
+		<video id="video"></video>
+		<canvas id="canvas"></canvas>
+	</div>
 <?php
     include 'footer.php';
 ?>

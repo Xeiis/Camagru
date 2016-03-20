@@ -92,7 +92,7 @@ function getXMLHttpRequest() {
 }
 
 var CheminComplet = document.location.href;
-var NomDuFichier     = CheminComplet.substring(CheminComplet.lastIndexOf( "/" )+1 );
+var NomDuFichier = CheminComplet.substring(CheminComplet.lastIndexOf( "/" )+1 );
 if (NomDuFichier == "home.php")
     document.getElementById('home').classList.add('active');
 else if (NomDuFichier == "galerie.php")

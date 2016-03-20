@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 -- Database: `camagru`
 --
 CREATE DATABASE camagru;
-
+use camagru;
 -- --------------------------------------------------------
 
 --

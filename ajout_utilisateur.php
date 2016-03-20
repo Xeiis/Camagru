@@ -1,36 +1,22 @@
 <?php
-try {
-    $dbh = new PDO('mysql:host=localhost;dbname=LOYER', 'root', 'root');
-}
-catch (PDOException $e)
-{
-    print "Erreur !: " . $e->getMessage() . "<br/>";
-    die();
-}
-if(isset ($_POST['identifiant']) )
-{
-    //echo "ident : ".$_POST['identifiant'];
-    $ident = $_POST['identifiant'];
-}
-else
-{
-   //echo "pas d'identifiant";
-}
-if(isset ($_POST['mdp']) )
-{
-    //echo "mdp : ".$_POST['mdp'];
-    $mdp = $_POST['mdp'];
-}
-else
-{
-    //echo "pas de mot de passe";
-}
-$ident = $_GET['identifiant'];
-$mdp = $_GET['mdp'];
-$table = $_GET['table'];
-$sql = "INSERT INTO ".$table." (identifiant, mdp) VALUES ('".$ident."', '".$mdp."')";
-$stmt = $dbh->prepare($sql);
-$stmt->execute();
+include 'connexion.php';
 
-echo "Votre compte à bien été crée vous pouvez maintenant vous connectez."
+$login = (isset($_POST["login"])) ? htmlentities($_POST["login"]) : NULL;
+$password = (isset($_POST["password"])) ? htmlentities($_POST["password"]) : NULL;
+$password2 = (isset($_POST["password2"])) ? htmlentities($_POST["password2"]) : NULL;
+
+if ($password != $password2 || $password == NULL || $login == NULL || $password2 == NULL)
+    echo "ta essayer de baiser mon javascript ?";
+else
+{
+    $sql = "SELECT 1 FROM UTILISATEUR WHERE login = '" . $login . "'";
+    if ($donnees = $reponse->fetch())
+        echo "Ce nom d'utilisateur existe deja";
+    else {
+        $sql = "INSERT INTO UILISATEUR (login, password) VALUES ('" . $login . "', '" . $password . "')";
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        echo "KO";
+    }
+}
 ?>

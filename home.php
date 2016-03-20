@@ -25,10 +25,6 @@
             </div>
          </center>
 	</div>
-	<!--<div>
-		<video id="video"></video>
-		<canvas id="canvas"></canvas>
-	</div>-->
 <?php
     include 'footer.php';
 ?>

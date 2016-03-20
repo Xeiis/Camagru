@@ -20,10 +20,10 @@
         <div class="connexion_header">
             Inscription
         </div>
-            <input type="text" class="input-sm form-control" id="identifiant" name="identifiant" placeholder="Identifiant"><br/>
-            <input type="password" class="input-sm form-control" id="motdepasse" name="mdp" placeholder="Mot de passe"><br/>
-            <input type="password" class="input-sm form-control" id="motdepasse2" placeholder="Vérification Mot de passe"><br/>
-            <input onclick="inscription()" type="submit" value="Inscription">
+            <input type="text" id="login" placeholder="Identifiant"><br/>
+            <input type="password" id="password"  placeholder="Mot de passe"><br/>
+            <input type="password" id="password2" placeholder="Vérification Mot de passe"><br/>
+            <input onclick="inscription(readData)" type="submit" value="Inscription">
         </div>
         </center>
     </div>

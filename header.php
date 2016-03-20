@@ -2,16 +2,16 @@
     <table>
         <tbody>
         <tr>
-            <td>
+            <td id="logo">
                 <img src="img/logo.jpg" height="30" width="30">
             </td>
-            <td class="active">
+            <td id="home">
                 <a href="home.php">Home</a>
             </td>
-            <td>
+            <td id="galerie">
                 <a href="galerie.php">Galerie</a>
             </td>
-            <td>
+            <td id="webcam">
                 <a href="webcam.php">Webcam</a>
             </td>
         </tr>

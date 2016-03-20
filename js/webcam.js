@@ -4,6 +4,7 @@ var canvas = document.getElementById('canvas');
 var videoStream = null;
 var preLog = document.getElementById('preLog');
 
+
 function log(text)
 {
     if (preLog) preLog.textContent += ('\n' + text);
@@ -52,7 +53,6 @@ function gotStream(stream)
     var myButton = document.getElementById('buttonStart');
     if (myButton) myButton.disabled = true;
     videoStream = stream;
-    log('Got stream.');
     video.onerror = function ()
     {
         log('video.onerror');
@@ -84,7 +84,6 @@ function start()
     else if (!(video && canvas)) log('HTML context error!');
     else
     {
-        log('Get user media…');
         if (navigator.getUserMedia) navigator.getUserMedia({video:true}, gotStream, noStream);
         else if (navigator.oGetUserMedia) navigator.oGetUserMedia({video:true}, gotStream, noStream);
         else if (navigator.mozGetUserMedia) navigator.mozGetUserMedia({video:true}, gotStream, noStream);
@@ -93,4 +92,3 @@ function start()
         else log('getUserMedia() not available from your Web browser!');
     }
 }
-start();

@@ -29,7 +29,7 @@ function inscription(callback){
 
     xhr.open("POST", "ajout_utilisateur.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("login=" + login + "&password=" + password);
+    xhr.send("login=" + login + "&password=" + password + "&password2=" + password2);
 }
 
 function login(callback)
@@ -66,6 +66,7 @@ function readData(sData)
     }
     else
     {
+        // affiche le sData d'erreur;
         alert("login et password incorrect");
     }
 }
@@ -89,3 +90,14 @@ function getXMLHttpRequest() {
     }
     return xhr;
 }
+
+var CheminComplet = document.location.href;
+var NomDuFichier     = CheminComplet.substring(CheminComplet.lastIndexOf( "/" )+1 );
+if (NomDuFichier == "home.php")
+    document.getElementById('home').classList.add('active');
+else if (NomDuFichier == "galerie.php")
+    document.getElementById('galerie').classList.add('active');
+else if (NomDuFichier == "webcam.php")
+    document.getElementById('webcam').classList.add('active');
+else
+    document.getElementById('logo').classList.add('active');

@@ -13,12 +13,17 @@
 ?>
 <div class="container">
     <!-- au millieu -->
-    <center>
-        <div class="webcam">
-            <video id="video"></video>
-            <canvas id="canvas"></canvas>
-        </div>
-    </center>
+    <div style="padding-left:15%;padding-top:2%;">
+       <div class="webcam">
+           <button id="stop" onclick="stop()">Stop</button>
+           <button id="start" onclick="start()">Start</button>
+           <button id="snapshot" onclick="snapshot()">Snapshot</button>
+           <div style="padding: 2%;">
+               <video id="video" style="float:left;width:640px;height:480px"></video>
+               <canvas id="canvas" style="padding-left:2%;width:640px;height:480px;"></canvas>
+           </div>
+       </div>
+    </div>
 </div>
 <?php
 include 'footer.php';

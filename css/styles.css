@@ -19,6 +19,15 @@ center{
     padding-top: 2%;
 }
 
+.error{
+    background-color:#A90202;
+    color:white;
+}
+.valid{
+    background-color: #19BB13;
+    color:white;
+}
+
 .container{
     height: 90%;
     width: 100%;

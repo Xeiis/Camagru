@@ -1,25 +1,54 @@
+var x = 0;
+var y = 1;
+var intervalId = null;
+var intervalId2 = null;
+var intervalId3 = null;
+var intervalId4 = null;
+
+function stop(t){
+    clearInterval(t);
+}
+function moreVisible(elem)
+{
+    x += 0.01;
+    elem.style.opacity = x;
+}
+
+function lessVisible(elem)
+{
+    y -= 0.01;
+    elem.style.opacity = y;
+}
+
 function inscription(callback){
     var login = document.getElementById('login').value;
     var password = document.getElementById('password').value;
     var password2 = document.getElementById('password2').value;
+    var ok;
+    var xhr = getXMLHttpRequest();
 
     if (!password){
-        alert("password vide"); //afficher une erreur a l'utilisateur
-        return;
+        document.getElementById("password_error").style.display = "block";
+        setTimeout(function() { display_none("password_error"); }, 3000);
+        ok = 1;
     }
     if (!password2){
-        alert("password2 vide"); //afficher une erreur a l'utilisateur
-        return;
+        document.getElementById("password2_error").style.display = "block";
+        setTimeout(function() { display_none("password2_error"); }, 3000);
+        ok = 1;
     }
     if (password != password2){
-        alert("false : " + password + " et " + password2); //afficher une erreur a l'utilisateur
-        return;
+        document.getElementById("different").style.display = "block";
+        setTimeout(function() { display_none("different_error"); }, 3000);
+        ok = 1;
     }
     if (!login){
-        alert("login vide"); //afficher une erreur a l'utilisateur
-        return;
+        document.getElementById("inexistant").style.display = "block";
+        setTimeout(function() { display_none("inexistant"); }, 3000);
+        ok = 1;
     }
-    var xhr = getXMLHttpRequest();
+    if (ok == 1)
+        return;
 
     xhr.onreadystatechange = function()
     {
@@ -36,13 +65,32 @@ function login(callback)
 {
     var login = document.getElementById('login').value;
     var password = document.getElementById('password').value;
+    var ok;
 
     if (!password){
-        alert("password vide");
-        return;
+        document.getElementById("password_error").style.display = "block";
+        elem = document.getElementById("password_error");
+        intervalId = setInterval(function() {moreVisible(elem)},25);
+        setTimeout(function() {stop(intervalId)}, 100 * 25);
+        setTimeout(function() {intervalId2 = setInterval(function() {lessVisible(elem)},25); }, 3000);
+        setTimeout(function() {stop(intervalId2)}, 100 * 25 + 3000);
+        setTimeout(function() { display_none("password_error"); }, 100 * 25 + 2000);
+        ok = 1;
     }
     if (!login){
-        alert("login vide"); //afficher une erreur a l'utilisateur
+        elem2 = document.getElementById("inexistant");
+        elem2.style.display = "block";
+        intervalId3 = setInterval(function() {moreVisible(elem2)},25);
+        setTimeout(function() {stop(intervalId3)}, 100 * 25);
+        setTimeout(function() {intervalId4 = setInterval(function() {lessVisible(elem2)},25); }, 3000);
+        setTimeout(function() {stop(intervalId4)}, 100 * 25 + 3000);
+        setTimeout(function() { display_none("inexistant"); }, 100 * 25 + 2000);
+        ok = 1;
+    }
+
+    if (ok == 1) {
+        x = 0;
+        y = 1;
         return;
     }
     var xhr = getXMLHttpRequest();
@@ -61,14 +109,47 @@ function login(callback)
 function readData(sData)
 {
     if (sData == "OK") {
-        alert("login et password ok");
-        //redigiriger vers la page approprie
+        if(NomDuFichier == "home.php")
+            document.location.href="galerie.php";
+        if(NomDuFichier == "inscription.php") {
+            document.getElementById("valide").style.display = "block";
+            setTimeout(function () {
+                display_none("valide");
+            }, 3000);
+        }
     }
-    else
-    {
-        // affiche le sData d'erreur;
-        alert("login et password incorrect");
+    else {
+        if (NomDuFichier == "inscription.php") {
+            if (sData == "different") {
+                document.getElementById("different").style.display = "block";
+                setTimeout(function() { display_none("different"); }, 3000);
+            }
+            if (sData == "password") {
+                document.getElementById("password_error").style.display = "block";
+                setTimeout(function() { display_none("password_error"); }, 3000);
+            }
+            if (sData == "password2") {
+                document.getElementById("password2_error").style.display = "block";
+                setTimeout(function() { display_none("password2_error"); }, 3000);
+            }
+            if (sData == "login vide") {
+                document.getElementById("inexistant").style.display = "block";
+                setTimeout(function() { display_none("inexistant"); }, 3000);
+            }
+            if (sData == "login"){
+                document.getElementById("login_error").style.display = "block";
+                setTimeout(function() { display_none("login_error"); }, 3000);
+            }
+        }
+        if (NomDuFichier == "home.php") {
+            document.getElementById("error").style.display = "block";
+            setTimeout(function() { display_none("error"); }, 3000);
+        }
     }
+}
+
+function display_none(id) {
+    document.getElementById(id).style.display = "none";
 }
 
 function getXMLHttpRequest() {

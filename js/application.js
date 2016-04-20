@@ -4,6 +4,13 @@ var intervalId = null;
 var intervalId2 = null;
 var intervalId3 = null;
 var intervalId4 = null;
+var intervalId5 = null;
+var intervalId6 = null;
+var intervalId7 = null;
+var intervalId8 = null;
+var intervalId9 = null;
+var intervalId10 = null;
+var nbclick = 0;
 
 function stop(t){
     clearInterval(t);
@@ -26,36 +33,102 @@ function inscription(callback){
     var password2 = document.getElementById('password2').value;
     var ok;
     var xhr = getXMLHttpRequest();
-
-    if (!password){
-        document.getElementById("password_error").style.display = "block";
-        setTimeout(function() { display_none("password_error"); }, 3000);
+    if (!password) {
+        var elem = document.getElementById("password_error");
+        elem.style.display = "block";
+        intervalId = setInterval(function () {
+            moreVisible(elem)
+        }, 25);
+        setTimeout(function () {
+            stop(intervalId)
+        }, 100 * 25);
+        setTimeout(function () {
+            intervalId2 = setInterval(function () {
+                lessVisible(elem)
+            }, 25);
+        }, 3000);
+        setTimeout(function () {
+            stop(intervalId2)
+        }, 100 * 25 + 3000);
+        setTimeout(function () {
+            display_none("password_error");
+        }, 100 * 25 + 3000);
         ok = 1;
     }
-    if (!password2){
-        document.getElementById("password2_error").style.display = "block";
-        setTimeout(function() { display_none("password2_error"); }, 3000);
+    if (!password2) {
+        var elem2 = document.getElementById("password2_error");
+        elem2.style.display = "block";
+        intervalId3 = setInterval(function () {
+            moreVisible(elem2)
+        }, 25);
+        setTimeout(function () {
+            stop(intervalId3)
+        }, 100 * 25);
+        setTimeout(function () {
+            intervalId4 = setInterval(function () {
+                lessVisible(elem2)
+            }, 25);
+        }, 3000);
+        setTimeout(function () {
+            stop(intervalId4)
+        }, 100 * 25 + 3000);
+        setTimeout(function () {
+            display_none("password2_error");
+        }, 100 * 25 + 3000);
         ok = 1;
     }
-    if (password != password2){
-        document.getElementById("different").style.display = "block";
-        setTimeout(function() { display_none("different_error"); }, 3000);
+    if (password != password2) {
+        var elem3 = document.getElementById("different");
+        elem3.style.display = "block";
+        intervalId5 = setInterval(function () {
+            moreVisible(elem3)
+        }, 25);
+        setTimeout(function () {
+            stop(intervalId5)
+        }, 100 * 25);
+        setTimeout(function () {
+            intervalId6 = setInterval(function () {
+                lessVisible(elem3)
+            }, 25);
+        }, 3000);
+        setTimeout(function () {
+            stop(intervalId6)
+        }, 100 * 25 + 3000);
+        setTimeout(function () {
+            display_none("different");
+        }, 100 * 25 + 3000);
         ok = 1;
     }
-    if (!login){
-        document.getElementById("inexistant").style.display = "block";
-        setTimeout(function() { display_none("inexistant"); }, 3000);
+    if (!login) {
+        var elem4 = document.getElementById("inexistant");
+        elem4.style.display = "block";
+        intervalId7 = setInterval(function () {
+            moreVisible(elem4)
+        }, 25);
+        setTimeout(function () {
+            stop(intervalId7)
+        }, 100 * 25);
+        setTimeout(function () {
+            intervalId8 = setInterval(function () {
+                lessVisible(elem4)
+            }, 25);
+        }, 3000);
+        setTimeout(function () {
+            stop(intervalId8)
+        }, 100 * 25 + 3000);
+        setTimeout(function () {
+            display_none("inexistant");
+        }, 100 * 25 + 3000);
         ok = 1;
     }
-    if (ok == 1)
+    if (ok == 1) {
         return;
-
+    }
     xhr.onreadystatechange = function()
     {
         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
             callback(xhr.responseText);
     };
-
     xhr.open("POST", "ajout_utilisateur.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("login=" + login + "&password=" + password + "&password2=" + password2);
@@ -65,32 +138,52 @@ function login(callback)
 {
     var login = document.getElementById('login').value;
     var password = document.getElementById('password').value;
-    var ok;
-
-    if (!password){
-        document.getElementById("password_error").style.display = "block";
+    var ok = 0;
+    if (!password) {
         elem = document.getElementById("password_error");
-        intervalId = setInterval(function() {moreVisible(elem)},25);
-        setTimeout(function() {stop(intervalId)}, 100 * 25);
-        setTimeout(function() {intervalId2 = setInterval(function() {lessVisible(elem)},25); }, 3000);
-        setTimeout(function() {stop(intervalId2)}, 100 * 25 + 3000);
-        setTimeout(function() { display_none("password_error"); }, 100 * 25 + 2000);
+        elem.style.display = "block";
+        intervalId = setInterval(function () {
+            moreVisible(elem)
+        }, 25);
+        setTimeout(function () {
+            stop(intervalId)
+        }, 100 * 25);
+        setTimeout(function () {
+            intervalId2 = setInterval(function () {
+                lessVisible(elem)
+            }, 25);
+        }, 3000);
+        setTimeout(function () {
+            stop(intervalId2)
+        }, 100 * 25 + 3000);
+        setTimeout(function () {
+            display_none("password_error");
+        }, 100 * 25 + 3000);
         ok = 1;
     }
-    if (!login){
+    if (!login) {
         elem2 = document.getElementById("inexistant");
         elem2.style.display = "block";
-        intervalId3 = setInterval(function() {moreVisible(elem2)},25);
-        setTimeout(function() {stop(intervalId3)}, 100 * 25);
-        setTimeout(function() {intervalId4 = setInterval(function() {lessVisible(elem2)},25); }, 3000);
-        setTimeout(function() {stop(intervalId4)}, 100 * 25 + 3000);
-        setTimeout(function() { display_none("inexistant"); }, 100 * 25 + 2000);
+        intervalId3 = setInterval(function () {
+            moreVisible(elem2)
+        }, 25);
+        setTimeout(function () {
+            stop(intervalId3)
+        }, 100 * 25);
+        setTimeout(function () {
+            intervalId4 = setInterval(function () {
+                lessVisible(elem2)
+            }, 25);
+        }, 3000);
+        setTimeout(function () {
+            stop(intervalId4)
+        }, 100 * 25 + 3000);
+        setTimeout(function () {
+            display_none("inexistant");
+        }, 100 * 25 + 3000);
         ok = 1;
     }
-
     if (ok == 1) {
-        x = 0;
-        y = 1;
         return;
     }
     var xhr = getXMLHttpRequest();
@@ -112,44 +205,95 @@ function readData(sData)
         if(NomDuFichier == "home.php")
             document.location.href="galerie.php";
         if(NomDuFichier == "inscription.php") {
-            document.getElementById("valide").style.display = "block";
-            setTimeout(function () {
-                display_none("valide");
-            }, 3000);
+            var elem = document.getElementById("valide");
+            elem.style.display = "block";
+            intervalId = setInterval(function() {moreVisible(elem)},25);
+            setTimeout(function() {stop(intervalId)}, 100 * 25);
+            setTimeout(function() {intervalId2 = setInterval(function() {lessVisible(elem)},25); }, 3000);
+            setTimeout(function() {stop(intervalId2)}, 100 * 25 + 3000);
+            setTimeout(function() { display_none("valide"); }, 100 * 25 + 3000);
         }
     }
     else {
         if (NomDuFichier == "inscription.php") {
             if (sData == "different") {
-                document.getElementById("different").style.display = "block";
-                setTimeout(function() { display_none("different"); }, 3000);
+                var elem3 = document.getElementById("different");
+                elem3.style.display = "block";
+                intervalId5 = setInterval(function() {moreVisible(elem3)},25);
+                setTimeout(function() {stop(intervalId5)}, 100 * 25);
+                setTimeout(function() {intervalId6 = setInterval(function() {lessVisible(elem3)},25); }, 3000);
+                setTimeout(function() {stop(intervalId6)}, 100 * 25 + 3000);
+                setTimeout(function() { display_none("different"); }, 100 * 25 + 3000);
             }
             if (sData == "password") {
-                document.getElementById("password_error").style.display = "block";
-                setTimeout(function() { display_none("password_error"); }, 3000);
+                var elem = document.getElementById("password_error");
+                elem.style.display = "block";
+                intervalId = setInterval(function() {moreVisible(elem)},25);
+                setTimeout(function() {stop(intervalId)}, 100 * 25);
+                setTimeout(function() {intervalId2 = setInterval(function() {lessVisible(elem)},25); }, 3000);
+                setTimeout(function() {stop(intervalId2)}, 100 * 25 + 3000);
+                setTimeout(function() { display_none("password_error"); }, 100 * 25 + 3000);
             }
             if (sData == "password2") {
-                document.getElementById("password2_error").style.display = "block";
-                setTimeout(function() { display_none("password2_error"); }, 3000);
+                var elem2 = document.getElementById("password2_error");
+                elem2.style.display = "block";
+                intervalId3 = setInterval(function() {moreVisible(elem2)},25);
+                setTimeout(function() {stop(intervalId3)}, 100 * 25);
+                setTimeout(function() {intervalId4 = setInterval(function() {lessVisible(elem2)},25); }, 3000);
+                setTimeout(function() {stop(intervalId4)}, 100 * 25 + 3000);
+                setTimeout(function() { display_none("password2_error"); }, 100 * 25 + 3000);
             }
             if (sData == "login vide") {
-                document.getElementById("inexistant").style.display = "block";
-                setTimeout(function() { display_none("inexistant"); }, 3000);
+                var elem4 = document.getElementById("inexistant");
+                elem4.style.display = "block";
+                intervalId7 = setInterval(function() {moreVisible(elem4)},25);
+                setTimeout(function() {stop(intervalId7)}, 100 * 25);
+                setTimeout(function() {intervalId8 = setInterval(function() {lessVisible(elem4)},25); }, 3000);
+                setTimeout(function() {stop(intervalId8)}, 100 * 25 + 3000);
+                setTimeout(function() { display_none("inexistant"); }, 100 * 25 + 3000);
             }
             if (sData == "login"){
-                document.getElementById("login_error").style.display = "block";
-                setTimeout(function() { display_none("login_error"); }, 3000);
+                var elem5 = document.getElementById("login_error");
+                elem5.style.display = "block";
+                intervalId9 = setInterval(function() {moreVisible(elem5)},25);
+                setTimeout(function() {stop(intervalId9)}, 100 * 25);
+                setTimeout(function() {intervalId10 = setInterval(function() {lessVisible(elem5)},25); }, 3000);
+                setTimeout(function() {stop(intervalId10)}, 100 * 25 + 3000);
+                setTimeout(function() { display_none("login_error"); }, 100 * 25 + 3000);
             }
         }
         if (NomDuFichier == "home.php") {
-            document.getElementById("error").style.display = "block";
-            setTimeout(function() { display_none("error"); }, 3000);
+            if (nbclick == 0) {
+                nbclick++;
+                var elem = document.getElementById("error");
+                elem.style.display = "block";
+                intervalId5 = setInterval(function () {
+                    moreVisible(elem)
+                }, 25);
+                setTimeout(function () {
+                    stop(intervalId5)
+                }, 100 * 25);
+                setTimeout(function () {
+                    intervalId6 = setInterval(function () {
+                        lessVisible(elem)
+                    }, 25);
+                }, 3000);
+                setTimeout(function () {
+                    stop(intervalId6)
+                }, 100 * 25 + 3000);
+                setTimeout(function () {
+                    display_none("error");
+                }, 100 * 25 + 3000);
+            }
         }
     }
 }
 
 function display_none(id) {
+    alert("x : " + x + " y : " + y);
     document.getElementById(id).style.display = "none";
+    x = 0;
+    y = 1;
 }
 
 function getXMLHttpRequest() {
@@ -174,7 +318,7 @@ function getXMLHttpRequest() {
 
 var CheminComplet = document.location.href;
 var NomDuFichier = CheminComplet.substring(CheminComplet.lastIndexOf( "/" )+1 );
-if (NomDuFichier == "home.php")
+if (NomDuFichier == "index.php")
     document.getElementById('home').classList.add('active');
 else if (NomDuFichier == "galerie.php")
     document.getElementById('galerie').classList.add('active');

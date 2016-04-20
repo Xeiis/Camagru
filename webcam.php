@@ -19,8 +19,8 @@
            <button id="start" onclick="start()">Start</button>
            <button id="snapshot" onclick="snapshot()">Snapshot</button>
            <div style="padding: 2%;">
-               <video id="video" style="float:left;width:640px;height:480px"></video>
-               <canvas id="canvas" style="padding-left:2%;width:640px;height:480px;"></canvas>
+               <video id="video" style="float:left;padding-left:2%;" width="640" height="480" autoplay></video>
+               <canvas id="canvas" style="padding-left:2%;" width="640" height="480"></canvas>
            </div>
        </div>
     </div>

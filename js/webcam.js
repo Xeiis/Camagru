@@ -16,6 +16,66 @@ function snapshot()
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     canvas.getContext('2d').drawImage(video, 0, 0);
+    var canvas2 = document.getElementById("canvas");
+    var img    = canvas2.toDataURL("image/png");
+    save_img(img);
+}
+
+function save_img(img){
+    var xhr = getXMLHttpRequest();
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
+        {}//afficher_img();
+    };
+    xhr.open("POST", "add_img.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("img=" + img);
+}
+
+function afficher_img(){
+    var xhr = getXMLHttpRequest();
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
+            put_result(xhr.responseText);
+    };
+    xhr.open("POST", "select_img.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send();
+}
+
+function put_result(Data){
+    var json = JSON.parse(Data);
+    var i = 0;
+    var html = '';
+    while (json[i]){
+        html += '';
+        i++;
+    }
+    html += '';
+    document.getElementById('ladiv').innerHTML = html;
+    // ecrire le resultat des images
+}
+
+function getXMLHttpRequest() {
+    var xhr = null;
+
+    if(window.XMLHttpRequest || window.ActiveXObject){
+        if(window.ActiveXObject){
+            try{
+                xhr = new ActiveXObject("Msxml2.XMLHTTP");
+            }catch(e){
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+        }else{
+            xhr = new XMLHttpRequest();
+        }
+    }else{
+        alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
+        return;
+    }
+    return xhr;
 }
 
 function noStream()

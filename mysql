@@ -1,3 +1,2 @@
-PATH=${PATH}:/usr/local/mysql/bin
-mysql -h localhost -p -u root < camagru.sql
+mysql -p -u root < camagru.sql
 mysql -u root -p

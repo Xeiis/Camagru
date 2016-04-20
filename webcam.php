@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -22,6 +23,7 @@
                <video id="video" style="float:left;padding-left:2%;" width="640" height="480" autoplay></video>
                <canvas id="canvas" style="padding-left:2%;" width="640" height="480"></canvas>
            </div>
+           <img id="theimage" src="">
        </div>
     </div>
 </div>

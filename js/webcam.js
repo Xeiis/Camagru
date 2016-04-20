@@ -18,6 +18,8 @@ function snapshot()
     canvas.getContext('2d').drawImage(video, 0, 0);
     var canvas2 = document.getElementById("canvas");
     var img    = canvas2.toDataURL("image/png");
+    document.getElementById("theimage").src = img;
+    console.log(img);
     save_img(img);
 }
 

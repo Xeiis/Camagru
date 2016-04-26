@@ -8,9 +8,9 @@ $grain = 'b54sFmjJ52';
 $sel = 'a12Gfd51gzR';
 $sha1 = sha1($grain.$password.$sel);
 
-$req = $dbh->prepare('select 1 from UTILISATEUR where login = :login and password = :passwd');
-$req->execute(array('login' => $login, 'passwd' => $sha1);
+$req = $dbh->prepare('select 1 from UTILISATEUR where login = :login and password = :passwd and validation = 1');
+$req->execute(array('login' => $login, 'passwd' => $sha1));
 if ($donnees = $req->fetch()) {
     echo "OK";
-    $_SESSION["login"] = $login;;
+    $_SESSION["login"] = $login;
 }

@@ -10,6 +10,8 @@ var intervalId7 = null;
 var intervalId8 = null;
 var intervalId9 = null;
 var intervalId10 = null;
+var intervalId11 = null;
+var intervalId12 = null;
 var nbclick = 0;
 
 function stop(t){
@@ -27,10 +29,25 @@ function lessVisible(elem)
     elem.style.opacity = y;
 }
 
+function logout()
+{
+    var xhr = getXMLHttpRequest();
+    
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
+            document.location.href = 'index.php';
+    };
+    xhr.open("POST", "logout.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send();
+}
+
 function inscription(callback){
     var login = document.getElementById('login').value;
     var password = document.getElementById('password').value;
     var password2 = document.getElementById('password2').value;
+    var email = document.getElementById('email').value;
     var ok;
     var xhr = getXMLHttpRequest();
     if (!password) {
@@ -131,7 +148,7 @@ function inscription(callback){
     };
     xhr.open("POST", "ajout_utilisateur.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("login=" + login + "&password=" + password + "&password2=" + password2);
+    xhr.send("login=" + login + "&password=" + password + "&password2=" + password2 + "&email=" + email);
 }
 
 function login(callback)
@@ -199,19 +216,30 @@ function login(callback)
     xhr.send("login=" + login + "&password=" + password);
 }
 
-function readData(sData)
-{
+function readData(sData) {
     if (sData == "OK") {
-        if(NomDuFichier == "home.php")
-            document.location.href="galerie.php";
-        if(NomDuFichier == "inscription.php") {
+        if (NomDuFichier == "index.php")
+            document.location.href = "galerie.php";
+        if (NomDuFichier == "inscription.php") {
             var elem = document.getElementById("valide");
             elem.style.display = "block";
-            intervalId = setInterval(function() {moreVisible(elem)},25);
-            setTimeout(function() {stop(intervalId)}, 100 * 25);
-            setTimeout(function() {intervalId2 = setInterval(function() {lessVisible(elem)},25); }, 3000);
-            setTimeout(function() {stop(intervalId2)}, 100 * 25 + 3000);
-            setTimeout(function() { display_none("valide"); }, 100 * 25 + 3000);
+            intervalId = setInterval(function () {
+                moreVisible(elem)
+            }, 25);
+            setTimeout(function () {
+                stop(intervalId)
+            }, 100 * 25);
+            setTimeout(function () {
+                intervalId2 = setInterval(function () {
+                    lessVisible(elem)
+                }, 25);
+            }, 3000);
+            setTimeout(function () {
+                stop(intervalId2)
+            }, 100 * 25 + 3000);
+            setTimeout(function () {
+                display_none("valide");
+            }, 100 * 25 + 3000);
         }
     }
     else {
@@ -219,78 +247,155 @@ function readData(sData)
             if (sData == "different") {
                 var elem3 = document.getElementById("different");
                 elem3.style.display = "block";
-                intervalId5 = setInterval(function() {moreVisible(elem3)},25);
-                setTimeout(function() {stop(intervalId5)}, 100 * 25);
-                setTimeout(function() {intervalId6 = setInterval(function() {lessVisible(elem3)},25); }, 3000);
-                setTimeout(function() {stop(intervalId6)}, 100 * 25 + 3000);
-                setTimeout(function() { display_none("different"); }, 100 * 25 + 3000);
-            }
-            if (sData == "password") {
-                var elem = document.getElementById("password_error");
-                elem.style.display = "block";
-                intervalId = setInterval(function() {moreVisible(elem)},25);
-                setTimeout(function() {stop(intervalId)}, 100 * 25);
-                setTimeout(function() {intervalId2 = setInterval(function() {lessVisible(elem)},25); }, 3000);
-                setTimeout(function() {stop(intervalId2)}, 100 * 25 + 3000);
-                setTimeout(function() { display_none("password_error"); }, 100 * 25 + 3000);
-            }
-            if (sData == "password2") {
-                var elem2 = document.getElementById("password2_error");
-                elem2.style.display = "block";
-                intervalId3 = setInterval(function() {moreVisible(elem2)},25);
-                setTimeout(function() {stop(intervalId3)}, 100 * 25);
-                setTimeout(function() {intervalId4 = setInterval(function() {lessVisible(elem2)},25); }, 3000);
-                setTimeout(function() {stop(intervalId4)}, 100 * 25 + 3000);
-                setTimeout(function() { display_none("password2_error"); }, 100 * 25 + 3000);
-            }
-            if (sData == "login vide") {
-                var elem4 = document.getElementById("inexistant");
-                elem4.style.display = "block";
-                intervalId7 = setInterval(function() {moreVisible(elem4)},25);
-                setTimeout(function() {stop(intervalId7)}, 100 * 25);
-                setTimeout(function() {intervalId8 = setInterval(function() {lessVisible(elem4)},25); }, 3000);
-                setTimeout(function() {stop(intervalId8)}, 100 * 25 + 3000);
-                setTimeout(function() { display_none("inexistant"); }, 100 * 25 + 3000);
-            }
-            if (sData == "login"){
-                var elem5 = document.getElementById("login_error");
-                elem5.style.display = "block";
-                intervalId9 = setInterval(function() {moreVisible(elem5)},25);
-                setTimeout(function() {stop(intervalId9)}, 100 * 25);
-                setTimeout(function() {intervalId10 = setInterval(function() {lessVisible(elem5)},25); }, 3000);
-                setTimeout(function() {stop(intervalId10)}, 100 * 25 + 3000);
-                setTimeout(function() { display_none("login_error"); }, 100 * 25 + 3000);
-            }
-        }
-        if (NomDuFichier == "home.php") {
-            if (nbclick == 0) {
-                nbclick++;
-                var elem = document.getElementById("error");
-                elem.style.display = "block";
                 intervalId5 = setInterval(function () {
-                    moreVisible(elem)
+                    moreVisible(elem3)
                 }, 25);
                 setTimeout(function () {
                     stop(intervalId5)
                 }, 100 * 25);
                 setTimeout(function () {
                     intervalId6 = setInterval(function () {
-                        lessVisible(elem)
+                        lessVisible(elem3)
                     }, 25);
                 }, 3000);
                 setTimeout(function () {
                     stop(intervalId6)
                 }, 100 * 25 + 3000);
                 setTimeout(function () {
-                    display_none("error");
+                    display_none("different");
                 }, 100 * 25 + 3000);
             }
+            if (sData == "password") {
+                var elem = document.getElementById("password_error");
+                elem.style.display = "block";
+                intervalId = setInterval(function () {
+                    moreVisible(elem)
+                }, 25);
+                setTimeout(function () {
+                    stop(intervalId)
+                }, 100 * 25);
+                setTimeout(function () {
+                    intervalId2 = setInterval(function () {
+                        lessVisible(elem)
+                    }, 25);
+                }, 3000);
+                setTimeout(function () {
+                    stop(intervalId2)
+                }, 100 * 25 + 3000);
+                setTimeout(function () {
+                    display_none("password_error");
+                }, 100 * 25 + 3000);
+            }
+            if (sData == "password2") {
+                var elem2 = document.getElementById("password2_error");
+                elem2.style.display = "block";
+                intervalId3 = setInterval(function () {
+                    moreVisible(elem2)
+                }, 25);
+                setTimeout(function () {
+                    stop(intervalId3)
+                }, 100 * 25);
+                setTimeout(function () {
+                    intervalId4 = setInterval(function () {
+                        lessVisible(elem2)
+                    }, 25);
+                }, 3000);
+                setTimeout(function () {
+                    stop(intervalId4)
+                }, 100 * 25 + 3000);
+                setTimeout(function () {
+                    display_none("password2_error");
+                }, 100 * 25 + 3000);
+            }
+            if (sData == "login vide") {
+                var elem4 = document.getElementById("inexistant");
+                elem4.style.display = "block";
+                intervalId7 = setInterval(function () {
+                    moreVisible(elem4)
+                }, 25);
+                setTimeout(function () {
+                    stop(intervalId7)
+                }, 100 * 25);
+                setTimeout(function () {
+                    intervalId8 = setInterval(function () {
+                        lessVisible(elem4)
+                    }, 25);
+                }, 3000);
+                setTimeout(function () {
+                    stop(intervalId8)
+                }, 100 * 25 + 3000);
+                setTimeout(function () {
+                    display_none("inexistant");
+                }, 100 * 25 + 3000);
+            }
+            if (sData == "login") {
+                var elem5 = document.getElementById("login_error");
+                elem5.style.display = "block";
+                intervalId9 = setInterval(function () {
+                    moreVisible(elem5)
+                }, 25);
+                setTimeout(function () {
+                    stop(intervalId9)
+                }, 100 * 25);
+                setTimeout(function () {
+                    intervalId10 = setInterval(function () {
+                        lessVisible(elem5)
+                    }, 25);
+                }, 3000);
+                setTimeout(function () {
+                    stop(intervalId10)
+                }, 100 * 25 + 3000);
+                setTimeout(function () {
+                    display_none("login_error");
+                }, 100 * 25 + 3000);
+            }
+            if (sData == "email") {
+                var elem6 = document.getElementById("email_error");
+                elem6.style.display = "block";
+                intervalId12 = setInterval(function () {
+                    moreVisible(elem6)
+                }, 25);
+                setTimeout(function () {
+                    stop(intervalId12)
+                }, 100 * 25);
+                setTimeout(function () {
+                    intervalId11 = setInterval(function () {
+                        lessVisible(elem6)
+                    }, 25);
+                }, 3000);
+                setTimeout(function () {
+                    stop(intervalId11)
+                }, 100 * 25 + 3000);
+                setTimeout(function () {
+                    display_none("email_error");
+                }, 100 * 25 + 3000);
+            }
+        }
+        if (NomDuFichier == "index.php") {
+            var elem = document.getElementById("error");
+            elem.style.display = "block";
+            intervalId5 = setInterval(function () {
+                moreVisible(elem)
+            }, 25);
+            setTimeout(function () {
+                stop(intervalId5)
+            }, 100 * 25);
+            setTimeout(function () {
+                intervalId6 = setInterval(function () {
+                    lessVisible(elem)
+                }, 25);
+            }, 3000);
+            setTimeout(function () {
+                stop(intervalId6)
+            }, 100 * 25 + 3000);
+            setTimeout(function () {
+                display_none("error");
+            }, 100 * 25 + 3000);
         }
     }
 }
 
 function display_none(id) {
-    alert("x : " + x + " y : " + y);
     document.getElementById(id).style.display = "none";
     x = 0;
     y = 1;

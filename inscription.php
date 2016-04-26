@@ -28,6 +28,10 @@
             <div id="login_error" class="error" style="display:none">
                 <p>Login deja existant</p>
             </div>
+            <input type="email" id="email" placeholder="Email"><br/>
+            <div id="email_error" class="error" style="display:none">
+                <p>Email invalide</p>
+            </div>
             <input type="password" id="password"  placeholder="Mot de passe"><br/>
             <div id="password_error" class="error" style="display:none">
                 <p>Vous n'avez pas indiquer de password</p>

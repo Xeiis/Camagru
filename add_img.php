@@ -10,7 +10,6 @@ if ($donnees = $req->fetch()) {
     $id = $donnees["id"];
 }
 $img = preg_replace('/\s/','+',$img);
-echo $img;
 $stmt = $dbh->prepare("INSERT INTO image (NOM, ID_UTILISATEUR) VALUES (:img, :id)");
 $stmt->execute(array('img' => $img, 'id' => $id));
 ?>

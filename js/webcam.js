@@ -18,8 +18,6 @@ function snapshot()
     canvas.getContext('2d').drawImage(video, 0, 0);
     var canvas2 = document.getElementById("canvas");
     var img    = canvas2.toDataURL("image/png");
-    document.getElementById("theimage").src = img;
-    console.log(img);
     save_img(img);
 }
 
@@ -28,7 +26,7 @@ function save_img(img){
     xhr.onreadystatechange = function()
     {
         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
-        {}//afficher_img();
+        afficher_img();
     };
     xhr.open("POST", "add_img.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -52,12 +50,11 @@ function put_result(Data){
     var i = 0;
     var html = '';
     while (json[i]){
-        html += '';
+        html += '<div><img src="'+json[i].nom+'"></div>';
         i++;
     }
     html += '';
     document.getElementById('ladiv').innerHTML = html;
-    // ecrire le resultat des images
 }
 
 function getXMLHttpRequest() {

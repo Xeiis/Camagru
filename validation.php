@@ -10,6 +10,7 @@ $req->execute(array('login' => $login, 'key' => $key));
 if ($donnees = $req->fetch()) {
     echo "Votre compte a bien été validé";
 }
+else
 {
     echo "<p style='color:red'>Une erreur est survenue votre compte n'a pas été validé</p>";
 }

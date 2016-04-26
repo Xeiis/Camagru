@@ -27,6 +27,33 @@ function lessVisible(elem)
     y -= 0.01;
     elem.style.opacity = y;
 }
+var img;
+
+function hover(id) {
+    elem = document.getElementById(id);
+    img = elem.src;
+    elem.setAttribute('src', './img/suppression.png');
+    elem.setAttribute('width', '640');
+    elem.setAttribute('height', '480');
+}
+
+function unhover(id) {
+    elem = document.getElementById(id);
+    elem.setAttribute('src', img);
+}
+
+function supprimer(id){
+    var xhr = getXMLHttpRequest();
+
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
+        {}
+    };
+    xhr.open("POST", "suppr_img.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("id=" + id);
+}
 
 function modif_passwd(){
     var passwd = document.getElementById('passwd').value;

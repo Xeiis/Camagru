@@ -50,7 +50,7 @@ function put_result(Data){
     var i = 0;
     var html = '';
     while (json[i]){
-        html += '<div><img src="'+json[i].nom+'"></div>';
+        html += '<div><img class="img" onclick="supprimer('+json[i].id+')" src="'+json[i].nom+'"></div>';
         i++;
     }
     html += '';

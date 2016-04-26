@@ -12,7 +12,6 @@ var intervalId9 = null;
 var intervalId10 = null;
 var intervalId11 = null;
 var intervalId12 = null;
-var nbclick = 0;
 
 function stop(t){
     clearInterval(t);
@@ -27,6 +26,53 @@ function lessVisible(elem)
 {
     y -= 0.01;
     elem.style.opacity = y;
+}
+
+function modif_passwd(){
+    var passwd = document.getElementById('passwd').value;
+    var logmail = document.getElementById('logmail').value;
+    var xhr = getXMLHttpRequest();
+
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
+        {
+            if (xhr.responseText == 'ok')
+            {
+                document.getElementById('valide').style.display = 'block';
+            }
+            else
+            {
+                document.getElementById('fail').style.display = 'block';
+            }
+        }
+    };
+    xhr.open("POST", "modif_passwd.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("logmail=" + logmail + "&password=" + passwd);
+}
+function forgot()
+{
+    var login = document.getElementById('login').value;
+    var xhr = getXMLHttpRequest();
+
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
+        {
+            if (xhr.responseText == 'ok')
+            {
+                document.getElementById('valide').style.display = 'block';
+            }
+            else
+            {
+                document.getElementById('fail').style.display = 'block';
+            }
+        }
+    };
+    xhr.open("POST", "add_forgot.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("logmail=" + login);
 }
 
 function logout()
@@ -219,7 +265,7 @@ function login(callback)
 function readData(sData) {
     if (sData == "OK") {
         if (NomDuFichier == "index.php")
-            document.location.href = "galerie.php";
+            document.location.href = "webcam.php";
         if (NomDuFichier == "inscription.php") {
             var elem = document.getElementById("valide");
             elem.style.display = "block";

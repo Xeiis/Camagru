@@ -31,7 +31,8 @@
                     <p>Mauvais mot de passe / login, Merci de reesayer.</p>
                 </div>
                 <input onclick="login(readData)" type="submit" value="Connection"><br>
-                <a href="inscription.php" id="href" style="font-size:12px; color:#000; text-decoration:none">Je m'inscrit !</a>
+                <a href="inscription.php" id="href" style="font-size:12px; color:#000; text-decoration:none">Je m'inscrit !</a><br/>
+                <a href="forgot.php" id="href" style="font-size:12px; color:#000; text-decoration:none">Mot de passe oublié ?</a>
             </div>
          </center>
 	</div>

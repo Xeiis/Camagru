@@ -48,7 +48,7 @@ function supprimer(id){
     xhr.onreadystatechange = function()
     {
         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
-        {}
+            afficher_img();
     };
     xhr.open("POST", "suppr_img.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

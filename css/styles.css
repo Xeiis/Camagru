@@ -169,4 +169,23 @@ input[type="text"]:focus, input[type="password"]:focus, input[type=submit], text
 .img{
     min-height:480px;
     min-width:640px;
+    position: relative;
+    display: block;
+}
+
+
+.hover {
+    position: absolute;
+    top:0;
+    left:0;
+    min-height:480px;
+    min-width:640px;
+    background: url('../img/suppression.png');
+    background-size: cover;
+    opacity: 0.5;
+    display: none;
+}
+
+.img:hover .hover {
+    display: block;
 }

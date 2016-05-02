@@ -32,7 +32,8 @@
                 $req = $dbh->prepare('SELECT id,nom FROM image where id_utilisateur = (select id from utilisateur where login = :login) order by id desc');
                 $req->execute(array('login' => $_SESSION['login']));
                 while ($donnees = $req->fetch()) {
-                    ?><div class="img" onclick="supprimer(<?php echo $donnees['id']?>)"><img id="<?php echo $donnees['id']?>" onmouseover="hover(<?php echo $donnees['id']?>);" onmouseout="unhover(<?php echo $donnees['id']?>);" src="<?php echo $donnees['nom']?>"></div><?php
+                    ?><div class="img" onclick="supprimer(<?php echo $donnees['id']?>)"><img id="<?php echo $donnees['id']?>" src="<?php echo $donnees['nom']?>"><div class="hover"></div></div>
+                    <?php
                 }
                 ?>
             </div>

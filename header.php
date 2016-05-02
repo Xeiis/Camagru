@@ -31,7 +31,7 @@
     <?php
         if ($_SESSION["login"])
         {
-            ?><div style="float:right;color:white;padding:20px;"><span> Bonjour <?php echo $_SESSION["login"]; ?> </span><button onclick="logout()">Deconnexion</button></div> <?php
+            ?><div style="float:right;color:white;padding:10px;"><span> Bonjour <?php echo $_SESSION["login"]; ?> </span><button onclick="logout()">Deconnexion</button></div> <?php
         }
     ?>
 </div>

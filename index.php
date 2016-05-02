@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
+<div class="global">
 <?php
     include 'header.php';
 ?>
@@ -39,6 +40,7 @@
 <?php
     include 'footer.php';
 ?>
+</div>
 <script src="js/application.js"></script>
 </body>
 </html>

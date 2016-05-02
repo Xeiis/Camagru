@@ -12,6 +12,7 @@ var intervalId9 = null;
 var intervalId10 = null;
 var intervalId11 = null;
 var intervalId12 = null;
+var limit = 10;
 
 function stop(t){
     clearInterval(t);
@@ -27,10 +28,60 @@ function lessVisible(elem)
     y -= 0.01;
     elem.style.opacity = y;
 }
+
+function print_galerie(data){
+    var json = JSON.parse(data);
+    console.info(json);
+    console.log(json[0][5].commentaire);
+    var i = 0;
+    var j;
+    var html = '';
+    while (json[i]){
+        j = 5;
+        html += '<div class="img" style="padding:20px;background-color:white;"><img src="'+json[i].nom+'"><div style="background-color:#afafaf;padding:10px;"><span style="margin:5px"><3 '+json[i].jaime+'</span>';
+        html += '<div><input id="commentaire'+json[i].id+'" style="width:85%;" type="text" placeholder="Votre commentaire..."><button onclick="add_comment('+json[i].id+')">Ajouter</button></div>';            // <?php
+        while (json[i][j]) {
+            html += '<div style="margin:5px"><div><span style="font-weight: bold;color:#3646ff">'+json[i][j].login+'</span>   '+json[i][j].commentaire+'</div></div>';
+            j++;
+        }
+        html += '</div></div>';
+        i++;
+    }
+    html += '';
+    document.getElementById('ladiv2').innerHTML = html;
+}
+
+function load_galerie(){
+    var xhr = getXMLHttpRequest();
+
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
+        print_galerie(xhr.responseText);
+    };
+    xhr.open("POST", "load_galerie.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("limit=" + limit);
+}
+
+function add_comment(id){
+    var com = document.getElementById('commentaire'+id).value;
+    var xhr = getXMLHttpRequest();
+
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
+            load_galerie();
+    };
+    xhr.open("POST", "add_comment.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("id=" + id +"&com=" + com);
+}
+
 var img;
 
 function hover(id) {
-    elem = document.getElementById(id);
+    var elem = document.getElementById(id);
     img = elem.src;
     elem.setAttribute('src', './img/suppression.png');
     elem.setAttribute('width', '640');
@@ -38,7 +89,7 @@ function hover(id) {
 }
 
 function unhover(id) {
-    elem = document.getElementById(id);
+    var elem = document.getElementById(id);
     elem.setAttribute('src', img);
 }
 

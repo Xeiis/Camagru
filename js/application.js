@@ -31,8 +31,6 @@ function lessVisible(elem)
 
 function print_galerie(data){
     var json = JSON.parse(data);
-    console.info(json);
-    console.log(json[0][5].commentaire);
     var i = 0;
     var j;
     var html = '';

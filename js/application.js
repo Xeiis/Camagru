@@ -38,10 +38,10 @@ function print_galerie(data){
     var html = '';
     while (json[i]){
         j = 5;
-        html += '<div class="img" style="padding:20px;background-color:white;"><img src="'+json[i].nom+'"><div style="background-color:#afafaf;padding:10px;"><span style="margin:5px"><3 '+json[i].jaime+'</span>';
-        html += '<div><input id="commentaire'+json[i].id+'" style="width:85%;" type="text" placeholder="Votre commentaire..."><button onclick="add_comment('+json[i].id+')">Ajouter</button></div>';            // <?php
+        html += '<div class="img" style="padding:20px;background-color:white;"><img src="'+json[i].nom+'"><div style="background-color:#afafaf;padding:10px;"><span style="margin:5px"><img onclick="add_like('+json[i].id+')" src="img/heart_16.png"> '+json[i].jaime+'</span>';
+        html += '<div><input id="commentaire'+json[i].id+'" style="width:85%;" type="text" placeholder="Votre commentaire..."><button onclick="add_comment('+json[i].id+')">Ajouter</button></div>';
         while (json[i][j]) {
-            html += '<div style="margin:5px"><div><span style="font-weight: bold;color:#3646ff">'+json[i][j].login+'</span>   '+json[i][j].commentaire+'</div></div>';
+            html += '<div style="margin:5px"><div><span style="font-weight: bold;color:#3646ff">'+json[i][j].login+'</span>   '+json[i][j].commentaire+' <img onclick="add_like_com('+json[i][j].id+')" src="img/heart_16.png"> '+json[i][j].jaime+'</div></div>';
             j++;
         }
         html += '</div></div>';
@@ -62,6 +62,34 @@ function load_galerie(){
     xhr.open("POST", "load_galerie.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("limit=" + limit);
+}
+
+function add_like(id)
+{
+    var xhr = getXMLHttpRequest();
+
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
+            load_galerie();
+    };
+    xhr.open("POST", "add_like_img.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("id=" + id);
+}
+
+function add_like_com(id)
+{
+    var xhr = getXMLHttpRequest();
+
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
+            load_galerie();
+    };
+    xhr.open("POST", "add_like_com.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("id=" + id);
 }
 
 function add_comment(id){

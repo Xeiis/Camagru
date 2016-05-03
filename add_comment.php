@@ -21,7 +21,6 @@ if ($com) {
 
 function envoie_mail($mail)
 {
-    echo $mail;
     if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail))
         $passage_ligne = "\r\n";
     else

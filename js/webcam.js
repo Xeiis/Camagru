@@ -84,6 +84,8 @@ function noStream()
 
 function stop()
 {
+    var elem = document.getElementById('filtre');
+    elem.style.display = 'none';
     var myButton = document.getElementById('buttonStop');
     if (myButton) myButton.disabled = true;
     myButton = document.getElementById('buttonSnap');
@@ -139,6 +141,8 @@ function gotStream(stream)
 
 function start()
 {
+    var elem = document.getElementById('filtre');
+    elem.style.display = 'block';
     if ((typeof window === 'undefined') || (typeof navigator === 'undefined')) log('This page needs a Web browser with the objects window.* and navigator.*!');
     else if (!(video && canvas)) log('HTML context error!');
     else

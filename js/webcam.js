@@ -3,7 +3,15 @@ var video = document.getElementById('video');
 var canvas = document.getElementById('canvas');
 var videoStream = null;
 var preLog = document.getElementById('preLog');
+var img_filtre;
 
+function image_choose(choose)
+{
+    img_filtre = choose;
+    alert(img_filtre);
+    var elem = document.getElementById('snapshot');
+    elem.style.display = '';
+}
 
 function log(text)
 {
@@ -18,10 +26,10 @@ function snapshot()
     canvas.getContext('2d').drawImage(video, 0, 0);
     var canvas2 = document.getElementById("canvas");
     var img    = canvas2.toDataURL("image/png");
-    save_img(img);
+    save_img(img,img_filtre);
 }
 
-function save_img(img){
+function save_img(img,img_filtre){
     var xhr = getXMLHttpRequest();
     xhr.onreadystatechange = function()
     {
@@ -30,7 +38,7 @@ function save_img(img){
     };
     xhr.open("POST", "add_img.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("img=" + img);
+    xhr.send("img=" + img + "&img_filtre=" + img_filtre);
 }
 
 function afficher_img(){
@@ -84,8 +92,10 @@ function noStream()
 
 function stop()
 {
-    var elem = document.getElementById('filtre');
+    var elem = document.getElementById('snapshot');
+    var elem2 = document.getElementById('filtre');
     elem.style.display = 'none';
+    elem2.style.display = 'none';
     var myButton = document.getElementById('buttonStop');
     if (myButton) myButton.disabled = true;
     myButton = document.getElementById('buttonSnap');

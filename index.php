@@ -11,6 +11,8 @@
 <body>
 <div class="global">
 <?php
+    if(!$_SESSION)
+        $_SESSION['login'] = '';
     include 'header.php';
 ?>
     <div class="container">

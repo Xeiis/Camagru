@@ -25,17 +25,10 @@ if ($_SESSION['login']) {
                     <div style="padding: 2%;">
                         <video id="video" style="float:left;padding-left:2%;" width="640" height="480" autoplay></video>
                         <canvas id="canvas" style="padding-left:2%;display:none" width="640" height="480"></canvas>
-                        <div id="filtre" style="float:left;padding-left:2%;width:57%;height:480px;display:none">
-                            <img src="img/cadre-gif.png" width="160" height="120">
-                            <img src="img/cadre2_60.jpg" width="160" height="120">
-                            <img src="img/chapeau-sorcier.jpg" width="160" height="120">
-                            <img src="img/masque-batman.jpg" width="160" height="120">
-                            <img src="img/masque_iron_man.jpg" width="160" height="120"><br/>
-                            <button>Choose me</button>
-                            <button>Choose me</button>
-                            <button>Choose me</button>
-                            <button>Choose me</button>
-                            <button>Choose me</button>
+                        <div id="filtre" style="float:left;padding-left:2%;padding-top:2%;width:57%;height:480px;display:none">
+                            <img src="img/alphatest1.png" width="160" height="120" onclick="image_choose('alphatest1.png')">
+                            <img src="img/alphatest2.png" width="160" height="120" onclick="image_choose('alphatest2.png')">
+                            <img src="img/alphatest3.png" width="160" height="120" onclick="image_choose('alphatest3.png')">
                         </div>
                     </div>
                 </div>

@@ -19,6 +19,7 @@ if ($_SESSION['login']) {
             <!-- au millieu -->
             <div>
                 <div id="ladiv2">
+                    <center><span style="margin-left:auto;margin-right:auto;">0 - 10</span>
                     <?php
                     include "connexion.php";
                     $req = $dbh->prepare('SELECT img.id,img.nom,img.jaime,img.id_utilisateur,u.login FROM image img LEFT JOIN utilisateur u on img.id_utilisateur = u.id order by img.id desc LIMIT 10');
@@ -47,6 +48,7 @@ if ($_SESSION['login']) {
                     ?>
                     <button id="prev" onclick="prev()" style="float:left">Prev</button>
                     <button id="next" onclick="next()" style="float:right">Next</button>
+                    </center>
                 </div>
             </div>
         </div>

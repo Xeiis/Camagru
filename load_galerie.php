@@ -1,9 +1,9 @@
 <?php
 include "connexion.php";
 $limit = (isset($_POST["limit"])) ? htmlentities($_POST["limit"]) : NULL;
-
-$req = $dbh->prepare('SELECT img.id,img.nom,img.jaime,img.id_utilisateur,u.login FROM image img LEFT JOIN utilisateur u on img.id_utilisateur = u.id order by img.id desc LIMIT 0,10');
-$req->execute(/*array($limit - 10, $limit)*/);
+$limit_under = $limit - 10;
+$req = $dbh->prepare('SELECT img.id,img.nom,img.jaime,img.id_utilisateur,u.login FROM image img LEFT JOIN utilisateur u on img.id_utilisateur = u.id order by img.id desc LIMIT '. $limit_under .', '.$limit);
+$req->execute();
 $rows = array();
 $i = 0;
 while ($donnees = $req->fetch()) {

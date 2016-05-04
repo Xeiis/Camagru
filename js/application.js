@@ -29,11 +29,24 @@ function lessVisible(elem)
     elem.style.opacity = y;
 }
 
+function next(){
+    limit += 10;
+    load_galerie();
+}
+
+function prev(){
+    if (limit > 10)
+        limit -= 10;
+    load_galerie();
+}
+
+
 function print_galerie(data){
     var json = JSON.parse(data);
     var i = 0;
     var j;
-    var html = '';
+    var limit_under = limit - 10;
+    var html = '<center style="padding:bottom:2%;"><span style="margin-left:auto;margin-right:auto;">'+ limit_under +' - '+limit+'</span>';
     while (json[i]){
         j = 5;
         html += '<div class="img" style="padding:20px;background-color:white;"><img width="320" height="240" src="'+json[i].nom+'"><div style="background-color:#afafaf;padding:10px;"><span style="margin:5px"><img onclick="add_like('+json[i].id+')" src="img/heart_16.png"> '+json[i].jaime+'</span>';
@@ -45,7 +58,7 @@ function print_galerie(data){
         html += '</div></div>';
         i++;
     }
-    html += '';
+    html += '<button id="prev" onclick="prev()" style="float:left">Prev</button><button id="next" onclick="next()" style="float:right">Next</button></center>';
     document.getElementById('ladiv2').innerHTML = html;
 }
 
@@ -55,7 +68,7 @@ function load_galerie(){
     xhr.onreadystatechange = function()
     {
         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
-        print_galerie(xhr.responseText);
+            print_galerie(xhr.responseText);
     };
     xhr.open("POST", "load_galerie.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

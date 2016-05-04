@@ -36,8 +36,8 @@ function print_galerie(data){
     var html = '';
     while (json[i]){
         j = 5;
-        html += '<div class="img" style="padding:20px;background-color:white;"><img src="'+json[i].nom+'"><div style="background-color:#afafaf;padding:10px;"><span style="margin:5px"><img onclick="add_like('+json[i].id+')" src="img/heart_16.png"> '+json[i].jaime+'</span>';
-        html += '<div><input id="commentaire'+json[i].id+'" style="width:85%;" type="text" placeholder="Votre commentaire..."><button onclick="add_comment('+json[i].id+')">Ajouter</button></div>';
+        html += '<div class="img" style="padding:20px;background-color:white;"><img width="320" height="240" src="'+json[i].nom+'"><div style="background-color:#afafaf;padding:10px;"><span style="margin:5px"><img onclick="add_like('+json[i].id+')" src="img/heart_16.png"> '+json[i].jaime+'</span>';
+        html += '<div><input id="commentaire'+json[i].id+'" style="width:69%;" type="text" placeholder="Votre commentaire..."><button onclick="add_comment('+json[i].id+')">Ajouter</button></div>';
         while (json[i][j]) {
             html += '<div style="margin:5px"><div><span style="font-weight: bold;color:#3646ff">'+json[i][j].login+'</span>   '+json[i][j].commentaire+' <img onclick="add_like_com('+json[i][j].id+')" src="img/heart_16.png"> '+json[i][j].jaime+'</div></div>';
             j++;
@@ -368,7 +368,7 @@ function login(callback)
 
 function readData(sData) {
     if (sData == "OK") {
-        if (NomDuFichier == "index.php")
+        if (NomDuFichier == "index.php" || NomDuFichier == '')
             document.location.href = "webcam.php";
         if (NomDuFichier == "inscription.php") {
             var elem = document.getElementById("valide");

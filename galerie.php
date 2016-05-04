@@ -17,7 +17,7 @@ if ($_SESSION['login']) {
         ?>
         <div class="container">
             <!-- au millieu -->
-            <div style="padding-left:3%;padding-top:2%;">
+            <div>
                 <div id="ladiv2">
                     <?php
                     include "connexion.php";
@@ -25,11 +25,11 @@ if ($_SESSION['login']) {
                     $req->execute();
                     while ($donnees = $req->fetch()) {
                         ?>
-                        <div class="img" style="padding:20px;background-color:white;"><img
+                        <div class="img" style="padding:20px;background-color:white;"><img width="320" height="240"
                             src="<?php echo $donnees['nom'] ?>">
                         <div style="background-color:#afafaf;padding:10px;"><span
                                 style="margin:5px"><img onclick="add_like(<?php echo $donnees['id']; ?>)" src="img/heart_16.png"> <?php echo $donnees['jaime']; ?> </span>
-                            <div><input id="commentaire<?php echo $donnees['id'] ?>" style="width:85%;" type="text"
+                            <div><input id="commentaire<?php echo $donnees['id'] ?>" style="width:69%;" type="text"
                                         placeholder="Votre commentaire...">
                                 <button onclick="add_comment(<?php echo $donnees['id'] ?>)">Ajouter</button>
                             </div><?php
@@ -45,6 +45,8 @@ if ($_SESSION['login']) {
                             ?></div></div><?php
                     }
                     ?>
+                    <button id="prev" onclick="prev()" style="float:left">Prev</button>
+                    <button id="next" onclick="next()" style="float:right">Next</button>
                 </div>
             </div>
         </div>

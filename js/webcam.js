@@ -10,7 +10,16 @@ function image_choose(choose)
     img_filtre = choose;
     alert(img_filtre);
     var elem = document.getElementById('snapshot');
+    var hidden = document.getElementById('filtre_img');
+    hidden.value = img_filtre;
     elem.style.display = '';
+}
+
+function img_load() {
+    console.log('in');
+    var img = document.getElementById('files');
+    var hidden = document.getElementById('filtre');
+    hidden.style.display = 'block';
 }
 
 function log(text)
@@ -25,7 +34,7 @@ function snapshot()
     canvas.height = video.videoHeight;
     canvas.getContext('2d').drawImage(video, 0, 0);
     var canvas2 = document.getElementById("canvas");
-    var img    = canvas2.toDataURL("image/png");
+    var img = canvas2.toDataURL("image/png");
     save_img(img,img_filtre);
 }
 
@@ -58,7 +67,7 @@ function put_result(Data){
     var i = 0;
     var html = '';
     while (json[i]){
-        html += '<div class="img" onclick="supprimer('+json[i].id+')"><img id="'+json[i].id+'" src="'+json[i].nom+'"><div class="hover"></div></div>';
+        html += '<div class="img" onclick="supprimer('+json[i].id+')"><img width="320" height="240" id="'+json[i].id+'" src="'+json[i].nom+'"><div class="hover"></div></div>';
         i++;
     }
     html += '';

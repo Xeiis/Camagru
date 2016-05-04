@@ -18,18 +18,25 @@ function random($car) {
     }
     return $string;
 }
-
-$img = (isset($_POST["img"])) ? htmlentities($_POST["img"]) : NULL;
-$img_filtre = (isset($_POST["img_filtre"])) ? htmlentities($_POST["img_filtre"]) : NULL;
-$img = preg_replace('/\s/','+',$img);
-
-list($type, $data) = explode(';', $img);
-list(, $data) = explode(',', $data);
-$data = base64_decode($data);
-file_put_contents('tmp/tmp1.png', $data);
-
+if ($_FILES['files']['name']) {
+    if ($_FILES['files']['error'] > 0) exit();
+    $extensions_valides = array('jpg', 'jpeg', 'png');
+    $extension_upload = strtolower(substr(strrchr($_FILES['files']['name'], '.'), 1));
+    if (in_array($extension_upload, $extensions_valides)); else exit();
+    $nom = "tmp/tmp2.png";
+    $resultat = move_uploaded_file($_FILES['files']['tmp_name'], $nom);
+}
+else {
+    $img = (isset($_POST["img"])) ? htmlentities($_POST["img"]) : NULL;
+    $img = preg_replace('/\s/', '+', $img);
+    list($type, $data) = explode(';', $img);
+    list(, $data) = explode(',', $data);
+    $data = base64_decode($data);
+    file_put_contents('tmp/tmp1.png', $data);
+}
 $im = imagecreatefrompng('tmp/tmp1.png');
-$alpha = imagecreatefrompng('img/'.$img_filtre);
+$img_filtre = (isset($_POST["img_filtre"])) ? htmlentities($_POST["img_filtre"]) : NULL;
+$alpha = imagecreatefrompng('img/' . $img_filtre);
 imagecopymerge_alpha($im, $alpha, 0, 0, 0, 0, imagesx($alpha), imagesy($alpha), 100);
 $save = "save/".random(50);
 imagepng($im, $save);
@@ -42,4 +49,5 @@ if ($donnees = $req->fetch()) {
     $stmt = $dbh->prepare("INSERT INTO image (NOM, ID_UTILISATEUR) VALUES (:img, :id)");
     $stmt->execute(array('img' => $save, 'id' => $id));
 }
+header('Location: webcam.php');
 ?>

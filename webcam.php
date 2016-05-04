@@ -32,6 +32,7 @@ if ($_SESSION['login']) {
                         <video id="video" style="float:left;padding-left:2%;" width="320" height="240" autoplay></video>
                         <canvas id="canvas" style="padding-left:2%;display:none" width="320" height="240"></canvas>
                         <div id="filtre" style="float:left;padding-left:2%;padding-top:2%;width:76%%;height:auto;display:none">
+                            <span>Cliquer sur une image pour la choisir</span>
                             <img src="img/alphatest1.png" width="160" height="120" onclick="image_choose('alphatest1.png')">
                             <img src="img/alphatest2.png" width="160" height="120" onclick="image_choose('alphatest2.png')">
                             <img src="img/alphatest3.png" width="160" height="120" onclick="image_choose('alphatest3.png')">

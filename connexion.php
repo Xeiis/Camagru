@@ -1,6 +1,9 @@
 <?php
+include "config/database.php";
 try {
-    $dbh = new PDO('mysql:host=localhost;dbname=camagru', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+    $dbh = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+    $sql = "use camagru;";
+    $dbh->exec($sql);
 }
 catch (PDOException $e)
 {

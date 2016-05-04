@@ -18,7 +18,7 @@ function envoie_mail($mail, $logmail, $key)
         $passage_ligne = "\r\n";
     else
         $passage_ligne = "\n";
-    $message_html = "<html><head></head><body><b>Bonjour</b><br/>Vous venez de demander une réinitialisation de mot de passe <br/>Pour réinitialié votre mot passe suivez le lien suivant <a href='http://localhost:8080/github_camagru/modif.php?logmail=".$logmail."&key=".$key."'>ici</a></body></html>";
+    $message_html = "<html><head></head><body><b>Bonjour</b><br/>Vous venez de demander une réinitialisation de mot de passe <br/>Pour réinitialié votre mot passe suivez le lien suivant <a href='http://localhost:8080/camagru/modif.php?logmail=".$logmail."&key=".$key."'>ici</a></body></html>";
     $boundary = "-----=".md5(rand());
     $sujet = "Modification de mot de passe";
     $header = "From: \"Camagru\"<camagru@yopmail.fr>".$passage_ligne;

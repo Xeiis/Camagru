@@ -40,7 +40,7 @@ function envoie_mail($mail, $login, $sha1)
     else
         $passage_ligne = "\n";
     $message_txt = "Salut à tous, voici un e-mail envoyé par un script PHP.";
-    $message_html = "<html><head></head><body><b>Bonjour</b><br/>Vous venez de vous inscrire sur le site web Camagru ! <br/>Pour valider cet exploit veuillez valider votre compte en cliquant sur ce lien <a href='http://localhost:8080/github_camagru/validation.php?login=".$login."&key=".$sha1."'>ci</a></body></html>";
+    $message_html = "<html><head></head><body><b>Bonjour</b><br/>Vous venez de vous inscrire sur le site web Camagru ! <br/>Pour valider cet exploit veuillez valider votre compte en cliquant sur ce lien <a href='http://localhost:8080/camagru/validation.php?login=".$login."&key=".$sha1."'>ci</a></body></html>";
     $boundary = "-----=".md5(rand());
     $sujet = "Validation du compte Camagru";
     $header = "From: \"Camagru\"<camagru@yopmail.fr>".$passage_ligne;
